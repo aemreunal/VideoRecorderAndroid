@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +25,7 @@ public class RootActivity extends Activity {
         textField = (EditText) findViewById(R.id.editText);
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -45,7 +43,7 @@ public class RootActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     public void recordButtonTapped(View view) {
         dispatchTakeVideoIntent();
