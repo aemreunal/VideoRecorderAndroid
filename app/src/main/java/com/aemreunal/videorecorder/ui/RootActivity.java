@@ -16,16 +16,18 @@ public class RootActivity extends Activity {
 
     public static final int REQUEST_VIDEO_CAPTURE = 1;
 
-    private EditText textField;
+    private EditText durationTextField;
+    private EditText jobNameTextField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root);
-        textField = (EditText) findViewById(R.id.editText);
+        durationTextField = (EditText) findViewById(R.id.editText);
+        jobNameTextField = (EditText) findViewById(R.id.jobNameTextField);
     }
 
-/*
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -43,7 +45,8 @@ public class RootActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
+    */
 
     public void recordButtonTapped(View view) {
         dispatchTakeVideoIntent();
@@ -51,8 +54,21 @@ public class RootActivity extends Activity {
 
     private void dispatchTakeVideoIntent() {
         Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        int duration = Integer.parseInt(textField.getText().toString());
+
+        // Set duration
+        int duration = Integer.parseInt(durationTextField.getText().toString());
         takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, duration);
+
+/*
+        // Set job name
+        String jobName = jobNameTextField.getText().toString();
+        if (jobName == null || jobName.equals("")) {
+            jobName = "job";
+        }
+        takeVideoIntent.putExtra(MediaStore.EXTRA_MEDIA_TITLE, jobName);
+*/
+
+        // Start activity
         if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
         }
